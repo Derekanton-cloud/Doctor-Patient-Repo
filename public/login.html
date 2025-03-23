@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor-Patient Login</title>
+
+  <!-- Enhanced CSS with 3D Effects and Centering -->
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #87CEFA, #4682B4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden; /* Prevent scrolling */
+    }
+
+    /* Form Container */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Heading Style */
+    .title {
+      font-size: 32px;
+      color: white;
+      margin-bottom: 30px;
+      text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    form {
+      background: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+      width: 350px;
+      transition: transform 0.5s, box-shadow 0.5s;
+    }
+
+    /* 3D Hover Effect */
+    form:hover {
+      transform: translateY(-10px);
+      box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Form Labels */
+    label {
+      display: block;
+      font-size: 14px;
+      margin: 15px 0 5px;
+      font-weight: bold;
+      text-align: left;
+      color: #333;
+    }
+
+    /* Input and Select Fields */
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+      transition: border 0.3s;
+    }
+
+    input:focus, select:focus {
+      border-color: #007BFF;
+      outline: none;
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    }
+
+    /* Button Style */
+    button {
+      background: linear-gradient(135deg, #007BFF, #0056b3);
+      color: white;
+      border: none;
+      padding: 12px;
+      margin-top: 20px;
+      width: 100%;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #0056b3, #003f7f);
+      transform: scale(1.05);
+    }
+
+    /* Links Style */
+    .link-container {
+      margin-top: 20px;
+    }
+
+    .link-container a {
+      text-decoration: none;
+      color: #007BFF;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+
+    .link-container a:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+
+    /* Divider Line */
+    .divider {
+      margin: 20px 0;
+      height: 1px;
+      background: #ccc;
+      width: 100%;
+    }
+
+    /* Error Message Display */
+    #message {
+      margin-top: 15px;
+      font-size: 14px;
+      color: red;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 400px) {
+      form {
+        width: 90%;
+      }
+
+      .title {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <!-- Heading Above the Form -->
+    <h2 class="title">Login to Doctor-Patient Portal</h2>
+
+    <!-- Login Form -->
+    <form id="loginForm">
+      <!-- Role Dropdown -->
+      <label for="role">Choose your role:</label>
+      <select id="role" name="role" required>
+        <option value="">Select your role</option>
+        <option value="doctor">Doctor</option>
+        <option value="patient">Patient</option>
+      </select>
+
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+      
+      <label for="otp" id="otpLabel" style="display: none;">Enter OTP:</label>
+      <input type="text" id="otp" name="otp" placeholder="Enter OTP" style="display: none;">
+      <div class="link-container">
+        <a href="forgotPassword.html">Forgot Password?</a>
+      </div>
+      
+      <button type="submit" id="submitBtn">Login</button>
+
+      
+      
+
+      <div class="divider"></div>
+
+      <div class="link-container">
+        <span>Don't have an account? </span><a href="register.html">Sign Up</a>
+      </div>
+    </form>
+
+    
+    <p id="message"></p>
+  </div>
+
+  
+  <script src="js\login.js"></script>
+
+</body>
+
+</html>

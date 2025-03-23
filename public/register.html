@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor-Patient Registration</title>
+
+  <!-- CSS Styling for 3D Form -->
+  <style>
+    /* General Page Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #87CEFA, #4682B4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #333;
+    }
+
+    /* Form Container */
+    .container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+      width: 90%;
+      max-width: 900px;
+      transition: transform 0.5s, box-shadow 0.5s;
+      overflow-y: auto;
+      max-height: 90vh;
+    }
+
+    /* Hover Effect */
+    .container:hover {
+      transform: translateY(-10px);
+      box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    /* Form Labels */
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    /* Input Fields */
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+      transition: border 0.3s;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #007BFF;
+      outline: none;
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    }
+
+    /* File Upload Style */
+    input[type="file"] {
+      padding: 5px;
+    }
+
+    /* Submit Button */
+    button {
+      background: linear-gradient(135deg, #007BFF, #0056b3);
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #0056b3, #003f7f);
+      transform: scale(1.05);
+    }
+
+    /* Hidden Section */
+    .hidden {
+      display: none;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      .container {
+        width: 100%;
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>Doctor-Patient Registration</h2>
+
+    <!-- Registration Form -->
+    <form id="registerForm" enctype="multipart/form-data">
+
+      <!-- Role Selection -->
+      <label for="role">Choose Your Role:</label>
+      <select id="role" name="role" required onchange="toggleFormFields()">
+        <option value="">Select Role</option>
+        <option value="doctor">Doctor</option>
+        <option value="patient">Patient</option>
+      </select>
+
+      <!-- Common Fields -->
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required>
+
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" required>
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="phone">Contact Number:</label>
+      <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+      <label for="emergencyContact">Emergency Contact Number:</label>
+      <input type="text" id="emergencyContact" name="emergencyContact" placeholder="Enter emergency contact" required>
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+
+      <!-- Doctor-Specific Fields -->
+      <div id="doctorFields" class="hidden">
+        <h3>Doctor Credentials:</h3>
+
+        <label for="license">Medical License Number:</label>
+        <input type="text" id="license" name="license" placeholder="License Number" required>
+
+        <label for="specialization">Specialization:</label>
+        <input type="text" id="specialization" name="specialization" placeholder="Your Specialization" required>
+
+        <label for="languages">Languages Spoken:</label>
+        <input type="text" id="languages" name="languages" placeholder="Languages (comma-separated)" required>
+
+        <label for="availability">Consultation Availability (Days & Time Slots):</label>
+        <textarea id="availability" name="availability" placeholder="e.g., Mon-Fri: 10am-2pm" required></textarea>
+
+        <label for="hospital">Hospital Name:</label>
+        <input type="text" id="hospital" name="hospital" placeholder="Enter your hospital name" required>
+
+        <label for="licenseFile">Medical License Certificate (Upload):</label>
+        <input type="file" id="licenseFile" name="licenseFile" accept=".pdf,.jpg,.png" required>
+
+        <label for="boardDoc">Board Issued Document (Upload):</label>
+        <input type="file" id="boardDoc" name="boardDoc" accept=".pdf,.jpg,.png" required>
+
+        <label for="govId">Government-Issued ID (Upload):</label>
+        <input type="file" id="govId" name="govId" accept=".pdf,.jpg,.png" required>
+      </div>
+
+      <!-- Patient-Specific Fields -->
+      <div id="patientFields" class="hidden">
+        <h3>Patient Information:</h3>
+
+        <label for="bloodGroup">Blood Group:</label>
+        <input type="text" id="bloodGroup" name="bloodGroup" placeholder="e.g., O+, A-" required>
+
+        <label for="medicalHistory">Medical History:</label>
+        <textarea id="medicalHistory" name="medicalHistory" placeholder="Existing medical conditions, allergies, etc." required></textarea>
+
+        <label for="govIdPatient">Government-Issued ID (Upload):</label>
+        <input type="file" id="govIdPatient" name="govIdPatient" accept=".pdf,.jpg,.png" required>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <!-- JavaScript for Dynamic Form -->
+  <script>
+    function toggleFormFields() {
+      const role = document.getElementById('role').value;
+      document.getElementById('doctorFields').classList.toggle('hidden', role !== 'doctor');
+      document.getElementById('patientFields').classList.toggle('hidden', role !== 'patient');
+    }
+  </script>
+
+</body>
+
+</html>

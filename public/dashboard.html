@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Dashboard - Doctor-Patient Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #content {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to Your Dashboard</h1>
+
+    <p><strong>Role:</strong> <span id="userRole"></span></p>
+
+    <button onclick="logout()">Logout</button>
+    <div id="content"></div>
+
+    <script>
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = '/login.html';
+        }
+
+        async function fetchDashboard() {
+            const role = localStorage.getItem('role');
+            document.getElementById('userRole').textContent = role.charAt(0).toUpperCase() + role.slice(1);
+
+            if (role === 'patient') {
+                const response = await fetch('/api/patient/doctors', {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                const doctors = await response.json();
+                showDoctors(doctors);
+            } else if (role === 'doctor') {
+                const response = await fetch('/api/doctor/appointments', {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                const appointments = await response.json();
+                showAppointments(appointments);
+            }
+        }
+
+        function showDoctors(doctors) {
+            const content = document.getElementById('content');
+            content.innerHTML = '<h2>Available Doctors:</h2>';
+            doctors.forEach(doc => {
+                const div = document.createElement('div');
+                div.innerHTML = `<p>${doc.name} - ${doc.specialization}</p>
+                    <button onclick="bookAppointment('${doc._id}')">Book Appointment</button>`;
+                content.appendChild(div);
+            });
+        }
+
+        async function bookAppointment(doctorId) {
+            const date = prompt('Enter appointment date (YYYY-MM-DD):');
+            if (!date) return alert('Date is required');
+
+            const response = await fetch('/api/patient/book', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({ doctorId, date }),
+            });
+
+            if (response.ok) alert('Appointment booked successfully');
+            else alert('Error booking appointment');
+        }
+
+        function showAppointments(appointments) {
+            const content = document.getElementById('content');
+            content.innerHTML = '<h2>Your Appointments:</h2>';
+            appointments.forEach(app => {
+                const div = document.createElement('div');
+                div.innerHTML = `<p>Patient: ${app.patient.name}, Date: ${new Date(app.date).toLocaleString()}</p>`;
+                content.appendChild(div);
+            });
+        }
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = '/login.html';
+        }
+
+        fetchDashboard();
+    </script>
+
+</body>
+
+</html>
+

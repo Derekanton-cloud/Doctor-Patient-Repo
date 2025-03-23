@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Doctor-Patient Interface</title>
+    <style>
+        /* General Page Styling */
+        html, body {
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth; /* Smooth scrolling between sections */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Full-screen Section */
+        .full-screen {
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #87CEFA, #4682B4);
+            box-sizing: border-box; /* Ensure padding is included */
+        }
+
+        /* Heading & Paragraph */
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            max-width: 800px; /* Better readability */
+            text-align: center;
+        }
+
+        /* Button Container */
+        .button-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Button Styling */
+        a {
+            text-decoration: none;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            color: white;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* About Section (Second Page) */
+        .about-section {
+            height: 150vh; /* Full screen height for the second section */
+            background: linear-gradient(145deg, #000000, #0d0d0d);
+            color: white;
+            padding: 80px 20px;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        .about-section h2 {
+            font-size: 40px;
+            margin-bottom: 40px;
+            text-shadow: 3px 3px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        .about-section p {
+            font-size: 18px;
+            max-width: 800px;
+            margin-bottom: 60px;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        /* Creators Container */
+        .creators {
+            display: flex;
+            flex-direction: column; /* Ensure items are stacked vertically */
+            align-items: center;
+            gap: 40px;
+        }
+
+        .creator {
+            display: flex;
+            flex-direction: column; /* Stack image and name vertically */
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Placeholder Logo (No Profile Picture Style) */
+        .creator img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .creator img:hover {
+            transform: scale(1.2);
+        }
+
+        .creator span {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            a {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+
+            .about-section h2 {
+                font-size: 28px;
+            }
+
+            .about-section p {
+                font-size: 16px;
+            }
+
+            .creator span {
+                font-size: 18px;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <!-- First Section (Full Screen) -->
+    <div class="full-screen">
+        <h1>Welcome to Doctor-Patient Interface</h1>
+        <p>Your health, our priority. Connect with certified doctors anytime, anywhere for free.</p>
+
+        <!-- Button Container -->
+        <div class="button-container">
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </div>
+    </div>
+
+    <!-- Second Section (About Us) -->
+    <!-- Second Section (About Us) -->
+<div id="about" class="about-section">
+    <h2>About Our Platform</h2>
+    <p>Our Doctor-Patient Interface provides fast, secure, and convenient communication between patients and certified doctors. Unlike other platforms, we ensure patient privacy, offer real-time video consultations, and provide quick scheduling with trusted medical professionals. Our focus is to deliver reliable healthcare access to everyone, free of charge.</p>
+    
+    <!-- Tagline -->
+    <h3 style="font-style: italic; font-weight: bold; margin-bottom: 40px; text-align: center;margin-top: 0px;">
+        "Nothing Personal, Just Service!"
+    </h3>
+
+    <!-- Creators Section -->
+    <div class="creators">
+        <div class="creator">
+            <h2 style="margin-top:0px;font-style:italic";>Creators:</h2>
+            <img src="assets/no-pfp.jpg" alt="Amrutha">
+            <span>Amrutha</span>
+        </div>
+        <div class="creator">
+            <img src="assets/no-pfp.jpg" alt="Hansini">
+            <span>Hansini</span>
+        </div>
+        <div class="creator">
+            <img src="assets/no-pfp.jpg" alt="Chandra Shekar">
+            <span>Chandra Shekar</span>
+        </div>
+        <div class="creator">
+            <img src="assets/no-pfp.jpg" alt="Derek">
+            <span>Derek</span>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
